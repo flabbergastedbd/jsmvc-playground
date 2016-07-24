@@ -1,0 +1,52 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-12 col-lg-12">
+      <h3>Mustache Sample</h3>
+      <!-- Redundant -->
+      <br>
+      <div class="row">
+        <div class="col-md-5 col-lg-5">
+          <h4>Input</h4>
+          <div class="input-group">
+            <input id='inp' class='form-control' value="John"/>
+            <div class="input-group-btn">
+              <button role='button' class="btn btn-primary" onclick='render();'>Refresh</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <h4>Template</h4>
+          <textarea class="form-control" id='template' rows=10>
+Hello escaped {{ name }}! <br>
+Hello unescapd {{{ name }}}! <br>
+          </textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <h4>Output</h4>
+          <div id='out'></div>
+        </div>
+      </div>
+      <!-- End Redundant -->
+    </div>
+  </div>
+  <script>
+    var t = document.getElementById('template').value;
+    Mustache.parse(t);
+    function render() {
+      document.getElementById('out').innerHTML = Mustache.render(t, {'name': document.getElementById('inp').value});
+    }
+  </script>
+</body>
+</html>
